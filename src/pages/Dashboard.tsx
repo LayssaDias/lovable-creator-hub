@@ -115,7 +115,7 @@ export default function Dashboard() {
         profileImage={profileData?.profile_image_url}
         creatorName={profileData?.creator_name || "Creator Name"}
         handle={profileData?.handle || "@handle"}
-        bio={profileData?.bio || "Bio do criador..."}
+        bio={profileData?.bio || "CONVERSAS EXCLUSIVAS: Respondo TODOS os meus assinantes.FOTOS e VÍDEOS: Envio conteúdo PESADO e exclusivo que vai te deixar viciado...."}
         mediaCount={profileData?.media_count || 0}
         likesCount={profileData?.likes_count || 0}
         commentsCount={profileData?.comments_count || 0}
