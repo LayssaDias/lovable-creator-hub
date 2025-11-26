@@ -38,9 +38,14 @@ export default function Profile() {
         <ProfileHeader
           coverImage={profileData?.cover_image_url}
           profileImage={profileData?.profile_image_url}
-          creatorName={profileData?.creator_name || "Creator Name"}
+          creatorName={profileData?.creator_name || "Laryssa Medeiros"}
           handle={profileData?.handle || "@handle"}
-          bio={profileData?.bio || "Bio do criador teste..."}
+          bio={profileData?.bio || `🔥😈 CONTEÚDO QUENTE E EXPLOSIVO! Sem Censura! 😈🔥
+           Prepare-se para uma conversa DELICIOSA e SEM FRESCURA! Aqui, a química rola solta!!
+           Sou tão safada quanto você espera e muito mais. Mande aquele "oi" mais safado que você tem e me diga na lata o que você quer!
+           CONVERSAS EXCLUSIVAS: Respondo TODOS os meus assinantes.
+           FOTOS e VÍDEOS: Envio conteúdo PESADO e exclusivo que vai te deixar viciado.
+           Quem entra aqui fica VICIADO. Você nunca mais vai querer sair!`}
           mediaCount={profileData?.media_count || 0}
           likesCount={profileData?.likes_count || 0}
           commentsCount={profileData?.comments_count || 0}
