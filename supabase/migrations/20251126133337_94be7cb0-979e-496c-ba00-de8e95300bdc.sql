@@ -99,13 +99,13 @@ CREATE TRIGGER update_chat_users_updated_at
 
 -- Insert default subscription plans
 INSERT INTO public.subscription_plans (name, duration_days, price, discount_percentage, description) VALUES
-  ('Mensal', 30, 19.90, 0, 'Acesso por 1 mês'),
-  ('3 meses', 90, 50.74, 15, 'Acesso por 3 meses'),
-  ('6 meses', 180, 95.52, 20, 'Acesso por 6 meses');
+  ('Semanal', 7, 29.90, 0, 'Acesso por 1 semana'),
+  ('Mensal', 30, 59.90, 0, 'Acesso por 1 mês'),
+  ('3 meses', 90, 119.90, 15, 'Acesso por 3 meses'),
 
 -- Insert default chat settings
 INSERT INTO public.chat_settings (benefits, price) VALUES
   ('• Acesso exclusivo ao chat privado
 • Resposta prioritária
 • Conteúdo exclusivo do chat
-• Interação direta com o criador', 29.90);
+• Interação direta com o criador', 49.90);
