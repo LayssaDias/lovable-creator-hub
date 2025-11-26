@@ -10,6 +10,7 @@ interface PaymentModalProps {
   pixKey?: string;
   beneficiaryName?: string;
   instructions?: string;
+  planName?: string;
 }
 
 export const PaymentModal = ({
@@ -19,6 +20,7 @@ export const PaymentModal = ({
   pixKey,
   beneficiaryName,
   instructions,
+  planName,
 }: PaymentModalProps) => {
   const copyPixKey = () => {
     if (pixKey) {
@@ -31,7 +33,9 @@ export const PaymentModal = ({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="bg-card border-border max-w-md">
         <DialogHeader>
-          <DialogTitle className="text-foreground">Pagamento via Pix</DialogTitle>
+          <DialogTitle className="text-foreground">
+            {planName ? `Pagar Plano ${planName} e Receber Acesso` : 'Pagamento via Pix'}
+          </DialogTitle>
         </DialogHeader>
 
         <div className="space-y-4">
