@@ -14,6 +14,87 @@ export type Database = {
   }
   public: {
     Tables: {
+      chat_settings: {
+        Row: {
+          beneficiary_name: string | null
+          benefits: string | null
+          created_at: string
+          id: string
+          payment_instructions: string | null
+          pix_key: string | null
+          price: number
+          qr_code_image_url: string | null
+          updated_at: string
+        }
+        Insert: {
+          beneficiary_name?: string | null
+          benefits?: string | null
+          created_at?: string
+          id?: string
+          payment_instructions?: string | null
+          pix_key?: string | null
+          price?: number
+          qr_code_image_url?: string | null
+          updated_at?: string
+        }
+        Update: {
+          beneficiary_name?: string | null
+          benefits?: string | null
+          created_at?: string
+          id?: string
+          payment_instructions?: string | null
+          pix_key?: string | null
+          price?: number
+          qr_code_image_url?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      chat_users: {
+        Row: {
+          birth_date: string
+          chat_enabled: boolean | null
+          country: string
+          cpf: string
+          created_at: string
+          email: string
+          full_name: string
+          id: string
+          nickname: string
+          phone: string
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          birth_date: string
+          chat_enabled?: boolean | null
+          country: string
+          cpf: string
+          created_at?: string
+          email: string
+          full_name: string
+          id?: string
+          nickname: string
+          phone: string
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          birth_date?: string
+          chat_enabled?: boolean | null
+          country?: string
+          cpf?: string
+          created_at?: string
+          email?: string
+          full_name?: string
+          id?: string
+          nickname?: string
+          phone?: string
+          updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       payment_settings: {
         Row: {
           beneficiary_name: string | null
@@ -47,6 +128,42 @@ export type Database = {
           telegram_username?: string | null
           updated_at?: string
           whatsapp_number?: string | null
+        }
+        Relationships: []
+      }
+      posts: {
+        Row: {
+          caption: string | null
+          comments_count: number | null
+          created_at: string
+          id: string
+          likes_count: number | null
+          media_type: string
+          media_url: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          caption?: string | null
+          comments_count?: number | null
+          created_at?: string
+          id?: string
+          likes_count?: number | null
+          media_type: string
+          media_url: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          caption?: string | null
+          comments_count?: number | null
+          created_at?: string
+          id?: string
+          likes_count?: number | null
+          media_type?: string
+          media_url?: string
+          status?: string
+          updated_at?: string
         }
         Relationships: []
       }
@@ -119,6 +236,51 @@ export type Database = {
           is_active?: boolean
           updated_at?: string
           user_id?: string
+        }
+        Relationships: []
+      }
+      subscription_plans: {
+        Row: {
+          beneficiary_name: string | null
+          created_at: string
+          description: string | null
+          discount_percentage: number | null
+          duration_days: number
+          id: string
+          name: string
+          payment_instructions: string | null
+          pix_key: string | null
+          price: number
+          qr_code_image_url: string | null
+          updated_at: string
+        }
+        Insert: {
+          beneficiary_name?: string | null
+          created_at?: string
+          description?: string | null
+          discount_percentage?: number | null
+          duration_days: number
+          id?: string
+          name: string
+          payment_instructions?: string | null
+          pix_key?: string | null
+          price: number
+          qr_code_image_url?: string | null
+          updated_at?: string
+        }
+        Update: {
+          beneficiary_name?: string | null
+          created_at?: string
+          description?: string | null
+          discount_percentage?: number | null
+          duration_days?: number
+          id?: string
+          name?: string
+          payment_instructions?: string | null
+          pix_key?: string | null
+          price?: number
+          qr_code_image_url?: string | null
+          updated_at?: string
         }
         Relationships: []
       }

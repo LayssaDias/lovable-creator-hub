@@ -7,6 +7,9 @@ import { toast } from "sonner";
 import { AdminProfile } from "@/components/admin/AdminProfile";
 import { AdminPayment } from "@/components/admin/AdminPayment";
 import { AdminSubscribers } from "@/components/admin/AdminSubscribers";
+import { AdminPlans } from "@/components/admin/AdminPlans";
+import { AdminPosts } from "@/components/admin/AdminPosts";
+import { AdminChat } from "@/components/admin/AdminChat";
 
 export default function Admin() {
   const navigate = useNavigate();
@@ -60,14 +63,29 @@ export default function Admin() {
         </div>
 
         <Tabs defaultValue="profile" className="w-full">
-          <TabsList className="grid w-full grid-cols-3 bg-card">
+          <TabsList className="grid w-full grid-cols-6 bg-card">
             <TabsTrigger value="profile">Perfil</TabsTrigger>
+            <TabsTrigger value="plans">Planos</TabsTrigger>
+            <TabsTrigger value="posts">Postagens</TabsTrigger>
+            <TabsTrigger value="chat">Chat</TabsTrigger>
             <TabsTrigger value="payment">Pagamento</TabsTrigger>
             <TabsTrigger value="subscribers">Assinantes</TabsTrigger>
           </TabsList>
 
           <TabsContent value="profile">
             <AdminProfile />
+          </TabsContent>
+
+          <TabsContent value="plans">
+            <AdminPlans />
+          </TabsContent>
+
+          <TabsContent value="posts">
+            <AdminPosts />
+          </TabsContent>
+
+          <TabsContent value="chat">
+            <AdminChat />
           </TabsContent>
 
           <TabsContent value="payment">

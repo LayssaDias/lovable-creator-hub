@@ -1,53 +1,70 @@
-import { Button } from "@/components/ui/button";
+import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
+import { supabase } from "@/lib/supabase";
+import { PaymentModal } from "./PaymentModal";
 
-interface SubscriptionPlansProps {
-  onSubscribe: () => void;
-}
+export const SubscriptionPlans = () => {
+  const [plans, setPlans] = useState<any[]>([]);
+  const [selectedPlan, setSelectedPlan] = useState<any>(null);
+  const [showModal, setShowModal] = useState(false);
 
-export const SubscriptionPlans = ({ onSubscribe }: SubscriptionPlansProps) => {
+  useEffect(() => {
+    loadPlans();
+  }, []);
+
+  const loadPlans = async () => {
+    const { data } = await supabase
+      .from('subscription_plans')
+      .select('*')
+      .order('duration_days', { ascending: true });
+    
+    if (data) setPlans(data);
+  };
+
+  const handlePlanClick = (plan: any) => {
+    setSelectedPlan(plan);
+    setShowModal(true);
+  };
   return (
-    <div className="w-full max-w-4xl mx-auto px-6 py-8">
-      <h2 className="text-xl font-bold text-foreground mb-4">Assinaturas</h2>
-      
-      <div className="space-y-3">
-        <Card className="bg-card border-border p-4 rounded-xl">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-foreground font-medium">Mensal</p>
-              <p className="text-sm text-muted-foreground">Acesso por 1 mês</p>
-            </div>
-            <p className="text-lg font-bold text-foreground">R$ 19,90</p>
-          </div>
-        </Card>
-
-        <Card className="bg-card border-border p-4 rounded-xl">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-foreground font-medium">3 meses (15% off)</p>
-              <p className="text-sm text-muted-foreground">Acesso por 3 meses</p>
-            </div>
-            <p className="text-lg font-bold text-foreground">R$ 50,74</p>
-          </div>
-        </Card>
-
-        <Card className="bg-card border-border p-4 rounded-xl">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-foreground font-medium">6 meses (20% off)</p>
-              <p className="text-sm text-muted-foreground">Acesso por 6 meses</p>
-            </div>
-            <p className="text-lg font-bold text-foreground">R$ 95,52</p>
-          </div>
-        </Card>
+    <>
+      <div className="w-full max-w-4xl mx-auto px-6 py-8">
+        <h2 className="text-xl font-bold text-foreground mb-4">Assinaturas</h2>
+        
+        <div className="space-y-3">
+          {plans.map((plan) => (
+            <Card 
+              key={plan.id}
+              className="bg-card border-border p-4 rounded-xl cursor-pointer hover:border-primary transition-colors"
+              onClick={() => handlePlanClick(plan)}
+            >
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-foreground font-medium">
+                    {plan.name}
+                    {plan.discount_percentage > 0 && ` (${plan.discount_percentage}% off)`}
+                  </p>
+                  <p className="text-sm text-muted-foreground">{plan.description}</p>
+                </div>
+                <p className="text-lg font-bold text-foreground">
+                  R$ {plan.price.toFixed(2)}
+                </p>
+              </div>
+            </Card>
+          ))}
+        </div>
       </div>
 
-      <Button
-        onClick={onSubscribe}
-        className="w-full mt-6 bg-gradient-primary text-primary-foreground font-semibold py-6 rounded-xl hover:opacity-90 transition-opacity shadow-glow"
-      >
-        ASSINAR AGORA
-      </Button>
-    </div>
+      {selectedPlan && (
+        <PaymentModal
+          open={showModal}
+          onOpenChange={setShowModal}
+          qrCodeUrl={selectedPlan.qr_code_image_url}
+          pixKey={selectedPlan.pix_key}
+          beneficiaryName={selectedPlan.beneficiary_name}
+          instructions={selectedPlan.payment_instructions}
+          planName={selectedPlan.name}
+        />
+      )}
+    </>
   );
 };
