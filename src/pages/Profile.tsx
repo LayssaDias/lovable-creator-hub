@@ -40,7 +40,7 @@ export default function Profile() {
           profileImage={profileData?.profile_image_url}
           creatorName={profileData?.creator_name || "Creator Name"}
           handle={profileData?.handle || "@handle"}
-          bio={profileData?.bio || "Bio do criador..."}
+          bio={profileData?.bio || "Bio do criador teste..."}
           mediaCount={profileData?.media_count || 0}
           likesCount={profileData?.likes_count || 0}
           commentsCount={profileData?.comments_count || 0}
