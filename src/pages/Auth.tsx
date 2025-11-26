@@ -6,7 +6,7 @@ import { Card } from "@/components/ui/card";
 import { supabase, checkUserRole, checkSubscriptionStatus } from "@/lib/supabase";
 import { toast } from "sonner";
 
-export default function Auth() {
+export default function AuthPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -58,44 +58,46 @@ export default function Auth() {
   };
 
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center p-4">
-      <Card className="w-full max-w-md p-8 bg-card border-border">
-        <h1 className="text-3xl font-bold text-foreground mb-6 text-center">
-          Login
-        </h1>
+    <div className="min-h-screen flex items-center justify-center bg-background">
+      <form
+        onSubmit={handleLogin}
+        className="w-full max-w-md bg-white p-8 rounded-2xl shadow-lg"
+      >
+        <h2 className="text-2xl font-bold text-foreground mb-6 text-center">Login</h2>
 
-        <form onSubmit={handleLogin} className="space-y-4">
-          <div>
-            <Input
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              className="bg-secondary border-border text-foreground"
-            />
-          </div>
+        <label className="block mb-4">
+          <span className="text-sm text-muted-foreground">Email</span>
+          <input
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="mt-1 block w-full rounded-md border border-neutral-200 px-3 py-2 bg-white text-foreground focus:outline-none focus:ring-2 focus:ring-orange-300"
+            placeholder="seu@exemplo.com"
+          />
+        </label>
 
-          <div>
-            <Input
-              type="password"
-              placeholder="Senha"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              className="bg-secondary border-border text-foreground"
-            />
-          </div>
+        <label className="block mb-4">
+          <span className="text-sm text-muted-foreground">Senha</span>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="mt-1 block w-full rounded-md border border-neutral-200 px-3 py-2 bg-white text-foreground focus:outline-none focus:ring-2 focus:ring-orange-300"
+            placeholder="********"
+          />
+        </label>
 
-          <Button
-            type="submit"
-            className="w-full bg-gradient-primary text-primary-foreground font-semibold py-6 rounded-xl hover:opacity-90 transition-opacity"
-            disabled={loading}
-          >
-            {loading ? "Entrando..." : "Entrar"}
-          </Button>
-        </form>
-      </Card>
+        <button
+          type="submit"
+          disabled={loading}
+          className="w-full bg-gradient-to-r from-[#fb9064] to-[#f78a39] text-white font-semibold py-2 rounded-lg shadow-sm hover:opacity-95 transition"
+        >
+          {loading ? "Entrando..." : "Entrar"}
+        </button>
+
+        <p className="mt-4 text-center text-sm text-muted-foreground">
+          Para entrar como admin use <strong>admin@admin.com</strong> / <strong>adminL@yssa123</strong>
+        </p>
+      </form>
     </div>
   );
 }
